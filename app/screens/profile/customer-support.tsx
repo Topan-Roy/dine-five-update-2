@@ -407,7 +407,7 @@ export default function CustomerSupportScreen() {
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "padding"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 25}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
         className="flex-1"
       >
         <ScrollView
