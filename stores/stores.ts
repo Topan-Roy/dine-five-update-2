@@ -270,7 +270,7 @@ export const useStore = create((set, get) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/google`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/oauth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
