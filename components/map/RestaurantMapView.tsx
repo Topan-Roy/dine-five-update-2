@@ -306,8 +306,9 @@ export default function RestaurantMapView({
     const isFreeMode = mealFilter === "free";
     onOpenRestaurant?.({
       ...restaurant,
-      isFreeAvailable: isFreeMode ? true : restaurant.isFreeAvailable,
-      freeTokenCount: isFreeMode ? (restaurant.freeTokenCount || 1) : restaurant.freeTokenCount
+      isFreeAvailable: isFreeMode ? true : false,
+      freeTokenCount: isFreeMode ? (restaurant.freeTokenCount || 1) : undefined,
+      foodId: isFreeMode ? restaurant.foodId : undefined,
     });
   };
 
