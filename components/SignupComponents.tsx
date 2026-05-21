@@ -45,12 +45,10 @@ const SignupComponents = () => {
           pathname: "/(auth)/verify-otp",
           params: { email },
         });
-      } else {
-        Alert.alert("Error", "Signup failed. Please try again.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log("Signup error:", error);
-      Alert.alert("Error", "An unexpected error occurred.");
+      Alert.alert("Error", error.message || "An unexpected error occurred.");
     }
   };
 

@@ -157,27 +157,28 @@ export const useStore = create((set, get) => ({
       const sessionData = result.data?.session || result.session;
 
       if (userData) {
-        await (get() as any).persistAuthData(
-          userData,
-          sessionData?.accessToken,
-          sessionData?.refreshToken,
-        );
+        // Only log the user in immediately if they are already verified or if isVerified is not explicitly false.
+        if (userData.isVerified !== false) {
+          await (get() as any).persistAuthData(
+            userData,
+            sessionData?.accessToken,
+            sessionData?.refreshToken,
+          );
 
-        set({
-          user: userData,
-          accessToken: sessionData?.accessToken,
-          refreshToken: sessionData?.refreshToken,
-          isLoading: false,
-        });
-
-        return result.data || result;
-      } else {
-        throw new Error("Invalid response format: User data is missing");
+          set({
+            user: userData,
+            accessToken: sessionData?.accessToken,
+            refreshToken: sessionData?.refreshToken,
+          });
+        }
       }
+
+      set({ isLoading: false });
+      return result.data || result;
     } catch (error: any) {
       console.log("signup error", error);
       set({ error: error.message, isLoading: false });
-      return null;
+      throw error;
     }
   },
 

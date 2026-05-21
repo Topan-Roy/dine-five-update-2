@@ -4,10 +4,10 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   ImageBackground,
-  View,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  View,
 } from "react-native";
 
 const Signup = () => {
